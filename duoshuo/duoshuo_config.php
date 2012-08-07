@@ -1,3 +1,3 @@
 <?php
-define('DUOSHUO_SHORTNAME', 'shen2');
-define('DUOSHUO_SECRET', 'fdsafasdfdsa');
+define('DUOSHUO_SHORTNAME', '');
+define('DUOSHUO_SECRET', '');
