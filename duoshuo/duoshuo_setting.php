@@ -34,6 +34,14 @@ function plugin_setting_view() {
 		        <td><input type="text" name="duoshuo_secret" value="<?php echo DUOSHUO_SECRET;?>" /></td>
 		        <td>你的多说密钥，一个32位字符串</td>
 		      </tr>
+		      <tr>
+		        <td>显示原生评论</td>
+		        <td>
+		        	<input type="hidden" name="duoshuo_show_original_comments" value="0" />
+			        <label><input type="checkbox" name="duoshuo_show_original_comments" value="1"<?php if (DUOSHUO_SHOW_ORIGINAL_COMMENTS) echo ' checked="checked"';?> />显示原生评论</label>
+			    </td>
+		        <td></td>
+		      </tr>
 			</tbody>
 		</table>
     
@@ -54,12 +62,13 @@ function plugin_setting() {
         $map = array(
         	'DUOSHUO_SHORTNAME'	=>	'duoshuo_shortname',
         	'DUOSHUO_SECRET'	=>	'duoshuo_secret',
+			'DUOSHUO_SHOW_ORIGINAL_COMMENTS'=>	'duoshuo_show_original_comments',
         );
         
         $fso = @fopen(EMLOG_ROOT.'/content/plugins/duoshuo/duoshuo_config.php','w'); //写入替换后的配置文件
         if ($fso === false)
         	emMsg(EMLOG_ROOT.'/content/plugins/duoshuo/duoshuo_config.php 没有写权限，请修改文件属性');
-        
+        var_dump($_POST);
         fwrite($fso, "<?php\n");
 		foreach($map as $key => $value){
 			$newValue = isset($_POST[$value]) ? $_POST[$value] : constant($key);

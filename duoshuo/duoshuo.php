@@ -15,7 +15,7 @@ emLoadJQuery();
 
 include_once EMLOG_ROOT . '/content/plugins/duoshuo/duoshuo_config.php';
 
-function duoshuo_comments(){?>
+function duoshuo_print_scripts(){?>
 
 <!-- Duoshuo bottom script -->
 <script type="text/javascript">
@@ -32,21 +32,25 @@ function duoshuo_comments(){?>
 </script>
 <?php 
 }
-addAction('index_footer','duoshuo_comments');
+addAction('index_footer','duoshuo_print_scripts');
 
-function duoshuo_add_thread($logData){?>
+function duoshuo_comments($logData){
+	return '<div class="ds-thread" data-thread-key="' . $logData['logid'] . '" data-url="' . Url::log($logData['logid']) . '" data-title="' . $logData['log_title'] . '" data-author-key="' . $logData['author'] . '"></div>';
+};
+
+function duoshuo_replace_comments($logData){?>
 <script>
 	jQuery(function(){
-		//如果想要隐藏原来的评论列表，可以打开下面两行的注释
-		//jQuery('.comment-header').hide();
-		//jQuery('.comment').hide();
-		jQuery('#comment-place').replaceWith('<div class="ds-thread" data-thread-key="<?php echo $logData['logid'];?>" data-url="<?php echo Url::log($logData['logid']);?>" data-title="<?php echo $logData['log_title'];?>" data-author-key="<?php echo $logData['author'];?>"></div>');
+	<?php if (!DUOSHUO_SHOW_ORIGINAL_COMMENTS):?>
+		jQuery('.comment-header').remove();
+		jQuery('.comment').remove();
+	<?php endif;?>
+		jQuery('#comment-place').replaceWith('<?php echo duoshuo_comments($logData)?>');
 	});
 </script>
 	<?php 
 }
-addAction('log_related', 'duoshuo_add_thread');
-
+addAction('log_related', 'duoshuo_replace_comments');
 
 function duoshuo_nav() {//写入插件导航
 	echo '<div class="sidebarsubmenu" id="themeseditor"><a href="./plugin.php?plugin=duoshuo">多说设置</a></div>';
