@@ -11,18 +11,22 @@ Author URL: http://duoshuo.com/
 
 !defined('EMLOG_ROOT') && exit('access deined!');
 
-emLoadJQuery();
-
 include_once EMLOG_ROOT . '/content/plugins/duoshuo/duoshuo_config.php';
 
-function duoshuo_print_scripts(){?>
+$duoshuo_ondomready = '';
 
+function duoshuo_print_scripts(){
+	global $duoshuo_ondomready;?>
 <!-- Duoshuo bottom script -->
 <script type="text/javascript">
-	jQuery(function(){
-		jQuery('#newcomment').addClass('ds-recent-comments').data('excerpt-length', 32);
-	});
-	var duoshuoQuery = {short_name: "<?php echo DUOSHUO_SHORTNAME;?>"};
+	var duoshuoQuery = {
+		short_name: "<?php echo DUOSHUO_SHORTNAME;?>",
+		ondomready: function(){
+			var $ = DUOSHUO.jQuery;
+			$('#newcomment').addClass('ds-recent-comments').data('excerpt-length', 32);
+			<?php echo $duoshuo_ondomready;?>
+		}
+	};
 	(function() {
 		var ds = document.createElement('script');
 		ds.type = 'text/javascript';ds.async = true;
@@ -38,17 +42,15 @@ function duoshuo_comments($logData){
 	return '<div class="ds-thread" data-thread-key="' . $logData['logid'] . '" data-url="' . Url::log($logData['logid']) . '" data-title="' . $logData['log_title'] . '" data-author-key="' . $logData['author'] . '"></div>';
 };
 
-function duoshuo_replace_comments($logData){?>
-<script>
-	jQuery(function(){
-	<?php if (!DUOSHUO_SHOW_ORIGINAL_COMMENTS):?>
-		jQuery('.comment-header').remove();
-		jQuery('.comment').remove();
-	<?php endif;?>
-		jQuery('#comment-place').replaceWith('<?php echo duoshuo_comments($logData)?>');
-	});
-</script>
-	<?php 
+function duoshuo_replace_comments($logData){
+	global $duoshuo_ondomready;
+	if (!DUOSHUO_SHOW_ORIGINAL_COMMENTS){
+		$duoshuo_ondomready .= <<<eot
+$('.comment-header').remove();
+$('.comment').remove();
+eot;
+	}
+	$duoshuo_ondomready.= '$(\'#comment-place\').replaceWith(\'' . duoshuo_comments($logData) . '\')';
 }
 addAction('log_related', 'duoshuo_replace_comments');
 
