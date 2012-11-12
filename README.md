@@ -16,7 +16,7 @@ duoshuo-emlog
 ## Contact
 本插件由[多说网](http://duoshuo.com/)维护，如果你有什么疑问或者建议，欢迎发邮件给zhenyu (at) duoshuo.com，或者在新浪微博上私信[@多说网](http://weibo.com/duoshuo)。
 
-欢迎访问[emlog插件讨论区](http://dev.duoshuo.com/dedecms-plugin)
+欢迎访问[emlog插件讨论区](http://dev.duoshuo.com/emlog-plugin)
 
 ## Changlog
 ### 0.2(2012-11-12)
