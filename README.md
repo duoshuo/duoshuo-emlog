@@ -16,4 +16,18 @@ duoshuo-emlog
 ## Contact
 本插件由[多说网](http://duoshuo.com/)维护，如果你有什么疑问或者建议，欢迎发邮件给zhenyu (at) duoshuo.com，或者在新浪微博上私信[@多说网](http://weibo.com/duoshuo)。
 
+欢迎访问[emlog插件讨论区](http://dev.duoshuo.com/dedecms-plugin)
+
+## Changlog
+### 0.2(2012-11-12)
+* [新增]在emlog管理后台就直接注册多说、创建多说站点
+* [新增]在emlog管理后台集成多说评论管理界面
+* [新增]支持单点登录（用户登录emlog后，评论框也登录）
+* [改进]使用数据库存储配置参数，不再需要读写文件
+* [改进]未配置完的用户显示提示信息
+* [修正]部分用户出现emLoadJQuery()函数未定义的问题
+
+### 0.1(2012-08-08)
+* 多说 for emlog 插件诞生了
+
 ## Showcases
