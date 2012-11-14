@@ -38,3 +38,6 @@
     </form>
     <p>如果你使用的模板无法看到多说评论框，请在模板的echo_log.php文件中插入代码：&lt;?php echo duoshuo_comments($logData);?&gt;</p>
     <p>更多功能设置，请访问：<a href="http://<?php echo $duoshuoPlugin->shortName?>.duoshuo.com">多说管理后台</a></p>
+<script>
+$('#duoshuo_settings').addClass('sidebarsubmenu1');
+</script>

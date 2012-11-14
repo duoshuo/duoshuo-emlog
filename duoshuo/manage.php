@@ -21,4 +21,5 @@ var $ = jQuery,
 resetIframeHeight();
 $(window).resize(resetIframeHeight);
 });
+$('#duoshuo_manage').addClass('sidebarsubmenu1');
 </script>

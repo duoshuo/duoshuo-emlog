@@ -73,10 +73,10 @@ else{
 
 function duoshuo_nav() {//写入插件导航
 	global $duoshuoPlugin;
-	echo '<div class="sidebarsubmenu"><a href="./plugin.php?plugin=duoshuo&page=settings">多说设置</a></div>';
+	echo '<div id="duoshuo_settings" class="sidebarsubmenu"><a href="./plugin.php?plugin=duoshuo&page=settings">多说设置</a></div>';
 	
 	if (!empty($duoshuoPlugin->shortName))
-		echo '<div class="sidebarsubmenu"><a href="./plugin.php?plugin=duoshuo&page=manage">多说管理</a></div>';
+		echo '<div id="duoshuo_manage" class="sidebarsubmenu"><a href="./plugin.php?plugin=duoshuo&page=manage">多说管理</a></div>';
 }
 
 addAction('adm_sidebar_ext', 'duoshuo_nav');
