@@ -133,6 +133,7 @@ class Duoshuo_Emlog{
 			'description'	=>	Option::get('bloginfo'),
 			'url'			=>	Option::get('blogurl'),
 			'siteurl'		=>	Option::get('blogurl'),
+			'system'		=>	'emlog',
 			'system_version'=>	Option::EMLOG_VERSION,
 			'plugin_version'=>	self::VERSION,
 		);

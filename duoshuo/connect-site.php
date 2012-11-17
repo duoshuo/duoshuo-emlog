@@ -2,7 +2,6 @@
 global $userData;
 
 $params = $duoshuoPlugin->packageOptions() + array(
-	'system'	=>	'emlog',
 	'callback'	=>	'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['REQUEST_URI']) .'/plugin.php?plugin=duoshuo&page=connect_site',
 	'user_key'	=>	$userData['uid'],
 	'user_name'	=>	$userData['username'],
